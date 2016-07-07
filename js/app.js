@@ -23,6 +23,7 @@ $(document).ready(function(){
   var distance = null
   var previousDistance = null
 
+
   	 function newGame (){
       console.log("Ready to play?");
       answer = Math.floor(Math.random() * 100) + 1;
@@ -41,23 +42,15 @@ $(document).ready(function(){
         var guess = $('#userGuess').val();
         console.log(guess);
         setFeedback(guess);
+        addGuess(guess);   
+        addGuessToList(guess);
+        resetForm(guess);
+
         //call other functions here
 
     })
 
-  //grab the guess from the field
-
-      
-    
-      
-  
-    /*function getGuess () {
-      guess = document.getElementById('#userGuess');
-      console.log(guess.value);
-    }*/
-
-
-  
+     
 
 
 
@@ -92,7 +85,6 @@ function getFeedback(guess) {
 
 
 //feedback for guess
-
 function setFeedback (guess){
   var feedback = getFeedback(guess);
   $('#feedback').text (feedback);
@@ -106,12 +98,28 @@ function addGuess(guess) {
   $('#count').text(guesses.length)
 
 }
+
+//add guesses to list
+function addGuessToList (guess) {
+  var guessList = []
+  $('ul').append(guess + ', ')
+
+}
+
+//reset form after each guess
+function resetForm (guess) {
+  $('form').reset()
+}
+
+
+
+
+
 newGame();
 
 });
 
-//add guesses to list
-//append guess 
+
 
 
 
