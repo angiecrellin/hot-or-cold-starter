@@ -29,8 +29,10 @@ $(document).ready(function(){
       answer = Math.floor(Math.random() * 100) + 1;
       console.log(answer);
       $('#userGuess').val('');
-      $('#guessButton').val('');
-      $('count').val('');
+      $('#count').text(0);
+      $('#feedback').text('Make your guess!');
+      $('#guessList').empty();
+      guesses = [];
      }
 
      $('.new').click(newGame)
@@ -59,26 +61,26 @@ function getFeedback(guess) {
  var difference = Math.abs(guess - answer);
  //if > 50 away
  if (difference >= 50){
-  return 'Your guess is far away'
+  return 'You\'re freezing cold'
  }
  //if between 30 and 50 away
  else if (difference >= 30){
-  return 'You\'re getting a bit closer'
+  return 'You\'re pretty chilly'
  }
  //if between 20 and 30 away
  else if (difference >= 20){
-  return 'You\'re getting a little closer'
+  return 'You\'re warming up a bit'
  }
  //if between 10 and 20 away
  else if (difference >= 10){
-  return 'You\'re getting even closer'
+  return 'You\'re getting pretty warm'
  }
  //if less than 10 away
  else if (difference >= 1){
-  return 'You\'re super close'
+  return 'You\'re scorching hot'
  }
  else {
-  return 'Nailed it'
+  return 'Nailed it!'
  }
 }
 
@@ -102,14 +104,20 @@ function addGuess(guess) {
 //add guesses to list
 function addGuessToList (guess) {
   var guessList = []
-  $('ul').append(guess + ', ')
+  $('#guessList').append('<li>'+ guess + '</li>')
 
 }
 
 //reset form after each guess
-function resetForm (guess) {
-  $('form').reset()
+function resetForm () {
+  
+  $('#userGuess').val('');
+
+  
 }
+
+
+//clear feedback and count on +New Game
 
 
 
